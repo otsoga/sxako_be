@@ -4,8 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3aa6efbb754ccfee8f386f7b0ee73bb4",
+    "content-hash": "1af03970ee13391c49c71ac3a85f26f2",
     "packages": [
+        {
+            "name": "amyboyd/pgn-parser",
+            "version": "0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amyboyd/pgn-parser.git",
+                "reference": "557426dfbda3ec2081b1ed678d4d72ce033be04f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amyboyd/pgn-parser/zipball/557426dfbda3ec2081b1ed678d4d72ce033be04f",
+                "reference": "557426dfbda3ec2081b1ed678d4d72ce033be04f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "AmyBoyd\\PgnParser\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Amy Boyd",
+                    "email": "amy@amyboyd.co.uk"
+                }
+            ],
+            "description": "A PHP parser for the chess game notation format, PGN. There are no external dependencies. It's simple to use, namespaced and testable.",
+            "support": {
+                "issues": "https://github.com/amyboyd/pgn-parser/issues",
+                "source": "https://github.com/amyboyd/pgn-parser/tree/0.4"
+            },
+            "abandoned": true,
+            "time": "2021-07-23T01:21:37+00:00"
+        },
         {
             "name": "composer/semver",
             "version": "3.4.0",
