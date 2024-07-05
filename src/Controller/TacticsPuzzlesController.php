@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+header('Access-Control-Allow-Origin: *');
+
 
 use App\Service\TacticsPuzzles;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,9 +13,8 @@ use Psr\Log\LoggerInterface;
 class TacticsPuzzlesController extends AbstractController
 {
     #[Route('/api/v1/tactics/puzzles', name: 'app_tactics_puzzles', format: 'json')]
-    public function index(TacticsPuzzles $tacticsPuzzles, LoggerInterface $logger): Response
+    public function index(TacticsPuzzles $tacticsPuzzles): Response
     {
-        $logger->info('A request was made to the tactics puzzles endpoint.');
         return $this->json($tacticsPuzzles->getRandom());
     }
 }
