@@ -13,6 +13,5 @@ class GamesController extends AbstractController
     public function index(Games $games): Response
     {
         return $this->json($games->getRandom());
-
     }
 }

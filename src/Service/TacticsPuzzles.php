@@ -4,6 +4,10 @@ namespace App\Service;
 
 class TacticsPuzzles
 {
+    public function create(string $fen, array|string $solution): void
+    {
+
+    }
     public function getRandom(): array
     {
         $puzzles = [
