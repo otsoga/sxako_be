@@ -22,3 +22,26 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+security:
+    # ...
+    firewalls:
+        # the order in which firewalls are defined is very important, as the
+        # request will be handled by the first firewall whose pattern matches
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        # a firewall with no pattern should be defined last because it will match all requests
+        main:
+            lazy: true
+            # provider that you set earlier inside providers
+            provider: app_user_provider
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+            json_login:
+                # api_login is a route we will create below
+                check_path: api_login
