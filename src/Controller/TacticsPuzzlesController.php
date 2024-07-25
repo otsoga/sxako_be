@@ -17,7 +17,6 @@ class TacticsPuzzlesController extends AbstractController
     #[Route('/api/v1/tactics/puzzles', name: 'app_tactics_puzzles_get', methods: ['GET'],format: 'json')]
     public function index(TacticsPuzzles $tacticsPuzzles, EntityManagerInterface $entityManager, Request $request): Response
     {
-//        return $this->json($tacticsPuzzles->getRandom($entityManager));
         return $this->json($tacticsPuzzles->get($entityManager, $request->query->getInt('id')));
     }
 //    #[Route('/api/v1/tactics/puzzles', name: 'app_tactics_puzzles_post', methods: ['POST'], format: 'json')]
