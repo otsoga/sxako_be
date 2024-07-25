@@ -2,26 +2,41 @@
 
 namespace App\Service;
 
+use App\Entity\TacticsPuzzle;
+use Doctrine\ORM\EntityManagerInterface;
+
 class TacticsPuzzles
 {
     public function create(string $fen, array|string $solution): void
     {
 
     }
-    public function getRandom(): array
-    {
-        $puzzles = [
-//            'r6r/1pp3k1/1b6/p2P1p2/P1N1pn2/2P2PP1/BP5P/4RR1K b - - 0 1',
-//            'rnb3kr/ppp4p/3b3B/3Pp2n/2BP4/3K1Rp1/PPP3q1/RN1Q4 w - - 0 1',
-            [
-                'fen' => 'r2q1rk1/pppb1ppp/3b4/4p1P1/4Pn2/2N1B2P/PPPQBP2/2KR3R w - - 0 1',
-                'solution' => ['Bxf4', 'exf4', 'e5', '']
-            ]
 
-//            '2kr4/1pp4p/1p1r4/5Pp1/1P2q3/2P1R2P/P3KP2/1Q1R4 b - - 0 1',
-//            'rn1qk2r/ppp2ppp/5n2/2b1p3/2B1P1b1/3P1N2/PPP3PP/RNBQK2R w KQkq - 0 1'
+    public function get(EntityManagerInterface $entityManager, int $id = 0): array
+    {
+        $puzzle = $id ? $entityManager->getRepository(TacticsPuzzle::class)->find($id) :
+            $entityManager->getRepository(TacticsPuzzle::class)->findOneBy([]);
+
+        return [
+            'id' => $puzzle->getId(),
+            'fen' => $puzzle->getFen(),
+            'solution' => array_merge(explode(' ', $puzzle->getSolution()), ['']), // empty string marks the end of the puzzle solution
+            'next' => $puzzle->getId() + 1 // this is a hack to get the next puzzle id, need to do a proper query
+        ];
+    }
+
+    public function getRandom(EntityManagerInterface $entityManager): array
+    {
+        $puzzles = $entityManager->getRepository(TacticsPuzzle::class)->findAll();
+        $puzzle = $puzzles[array_rand($puzzles)];
+        $formattedPuzzle = [
+            'id' => $puzzle->getId(),
+            'fen' => $puzzle->getFen(),
+            'solution' => explode(' ', $puzzle->getSolution())
         ];
 
-        return $puzzles[array_rand($puzzles, 1)];
+        $formattedPuzzle['solution'][] = ''; // marks the end of the puzzle solution
+
+        return $formattedPuzzle;
     }
 }

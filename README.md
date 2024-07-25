@@ -12,3 +12,5 @@
 
 ## Notes
 - Login built with https://symfony.com/doc/current/security.html
+- Generating token with https://medium.com/@edouard.courty/how-to-enable-jwt-authentication-with-symfony-83a05ab2592f
+and https://blog.theodo.com/2022/12/symfony-jwt-authentication/
